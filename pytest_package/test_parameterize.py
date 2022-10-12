@@ -90,13 +90,18 @@ class RegisterPage:
         self.driver.find_element(*locator).send_keys(email)
 
     def enter_password(self, pwd):
-        assert len(pwd) >= 6, "password should have atleast 6 characters"
+        if isinstance(pwd, float):
+            pwd = str(int(pwd))
 
+        assert len(pwd) >= 6, "password should have atleast 6 characters"
         locator = self.reg_locators["password_txt"]
         self.driver.find_element(*locator).send_keys(pwd)
         return pwd
 
     def confirm_password(self, c_pwd, actual_pwd):
+        if isinstance(c_pwd, float):
+            c_pwd = str(int(c_pwd))
+
         locator = self.reg_locators["confirm_password_txt"]
         assert actual_pwd == c_pwd, "passwords are different"
         self.driver.find_element(*locator).send_keys(c_pwd)

@@ -20,8 +20,8 @@ driver = webdriver.Chrome(executable_path=path)
 # firstname.send_keys("steve")
 #
 # # ii. explicit wait
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 #
 # element = driver.find_element("name", "fname")
 #

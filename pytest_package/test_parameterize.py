@@ -3,7 +3,9 @@ import xlrd
 import pytest
 from selenium import webdriver
 
+
 class ReadExcel:
+    """Includes methods for reading locators and data from excel sheet"""
 
     def read_testdata(self):
         f_path = r"C:\Users\Vidyashree M C\PycharmProjects\Selenium_HTD\test_data\demowebshop_testdata.xlsx"
@@ -30,9 +32,12 @@ class ReadExcel:
 
         return d
 
+############################################################################################
 
 @pytest.fixture(params=["Chrome", "firefox", "edge"])
 def init_driver(request):
+    """ consists of the set up and tear down methods that is executed before and after each testcases"""
+
     browser = request.param
 
     if browser.lower() == "chrome":
@@ -53,8 +58,9 @@ def init_driver(request):
     driver.close()
 
 
+###########################################################################################
 class RegisterPage:
-
+    """ consists of the automation script/ business logic of  Registration page of demo web shop"""
     read_xl = ReadExcel()
     reg_locators = read_xl.read_locators()
 
@@ -107,7 +113,10 @@ class RegisterPage:
         self.driver.find_element(*locator).send_keys(c_pwd)
 
 
+########################################################################################
 class TestRegisterPage:
+    """ contains the test scripts for the above automation scripts"""
+
     read_xl = ReadExcel()
     data = read_xl.read_testdata()
 
